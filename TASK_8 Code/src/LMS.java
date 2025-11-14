@@ -74,3 +74,34 @@ public class LMS {
         emailField.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
         return emailField;
     }
+
+    public JButton prepareJButtonSaveButton() {
+        saveButton = new JButton("SUBMIT");
+        saveButton.setBackground(new Color(200, 0, 0)); // red background
+        saveButton.setForeground(Color.WHITE);
+        saveButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+        saveButton.setFocusPainted(false);
+        saveButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+        saveButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        saveButton.addActionListener(e -> {
+            String name = nametextfield.getText().trim();
+            String email = emailField.getText().trim();
+
+            if (name.isEmpty() || email.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill all fields!");
+                return;
+            }
+
+            if (saveUser(name, email)) {
+                JOptionPane.showMessageDialog(null, "User saved successfully!");
+                loadUsers();
+                nametextfield.setText("");
+                emailField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error saving user!");
+            }
+        });
+
+        return saveButton;
+    }
