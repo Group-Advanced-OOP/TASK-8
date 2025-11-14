@@ -114,7 +114,7 @@ public class LMS {
         MemberTable.setRowHeight(25);
         MemberTable.setGridColor(new Color(200, 0, 0));
         MemberTable.setSelectionBackground(new Color(255, 220, 220));
-        
+
         JTableHeader header = MemberTable.getTableHeader();
         header.setBackground(new Color(200, 0, 0)); // red
         header.setForeground(Color.WHITE); // white text
@@ -127,4 +127,24 @@ public class LMS {
         }
 
         return MemberTable;
+    }
+
+    private void loadUsers() {
+        tableModel.setRowCount(0);
+        String sql = "SELECT id, name, email FROM Users";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                tableModel.addRow(new Object[]{id, name, email});
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
