@@ -54,3 +54,23 @@ public class LMS {
         namelabel.setForeground(new Color(200, 0, 0));
         return namelabel;
     }
+
+    public JTextField prepareJTextFieldNametextfield() {
+        nametextfield = new JTextField();
+        nametextfield.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+        return nametextfield;
+    }
+
+    // Email label and field
+    public JLabel prepareJLabelEmailLabel() {
+        emaillabel = new JLabel("EMAIL:");
+        emaillabel.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+        emaillabel.setForeground(new Color(200, 0, 0));
+        return emaillabel;
+    }
+
+    public JTextField prepareJTextFieldEmailTextField() {
+        emailField = new JTextField();
+        emailField.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+        return emailField;
+    }
