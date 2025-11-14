@@ -148,3 +148,20 @@ public class LMS {
             e.printStackTrace();
         }
     }
+
+    private boolean saveUser(String name, String email) {
+        String sql = "INSERT INTO Users (name, email) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, name);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
