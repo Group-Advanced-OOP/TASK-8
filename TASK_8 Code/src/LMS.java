@@ -105,3 +105,26 @@ public class LMS {
 
         return saveButton;
     }
+
+    public JTable prepareMemberTable() {
+        tableModel = new DefaultTableModel(new String[]{"ID", "Name", "Email"}, 0);
+        loadUsers();
+        MemberTable = new JTable(tableModel);
+        MemberTable.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        MemberTable.setRowHeight(25);
+        MemberTable.setGridColor(new Color(200, 0, 0));
+        MemberTable.setSelectionBackground(new Color(255, 220, 220));
+        
+        JTableHeader header = MemberTable.getTableHeader();
+        header.setBackground(new Color(200, 0, 0)); // red
+        header.setForeground(Color.WHITE); // white text
+        header.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < MemberTable.getColumnCount(); i++) {
+            MemberTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+
+        return MemberTable;
+    }
